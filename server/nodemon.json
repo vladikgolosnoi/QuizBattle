@@ -1,0 +1,5 @@
+{
+  "watch": ["index.js", "questionGenerator.js"],
+  "ext": "js,mjs,cjs,json",
+  "ignore": ["exports/**", ".env", "node_modules/**"]
+}

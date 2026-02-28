@@ -1,0 +1,19 @@
+{
+  "name": "quizbattle-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client -- --host 0.0.0.0 --port 5175\"",
+    "dev:client": "npm run dev --prefix client -- --host 0.0.0.0 --port 5175",
+    "dev:server": "npm run dev --prefix server",
+    "build": "npm run build --prefix client",
+    "lint": "npm run lint --prefix client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

@@ -1,0 +1,20 @@
+node_modules/
+client/node_modules/
+server/node_modules/
+
+client/dist/
+dist/
+exports/
+
+server/.env
+client/.env
+
+.DS_Store
+npm-debug.log*
+yarn-error.log*
+
+# local data
+data/*.db
+server/data/*.db
+server/data/*.db-shm
+server/data/*.db-wal
