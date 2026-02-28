@@ -1,4 +1,5 @@
 const path = require('path')
+const fsSync = require('fs')
 const fs = require('fs/promises')
 const crypto = require('crypto')
 const express = require('express')
@@ -541,6 +542,18 @@ app.get('/meta', (_req, res) => {
     },
   })
 })
+
+const CLIENT_DIST_DIR = path.resolve(__dirname, '../client/dist')
+if (process.env.SERVE_CLIENT !== 'false' && fsSync.existsSync(CLIENT_DIST_DIR)) {
+  app.use(express.static(CLIENT_DIST_DIR))
+  app.use((req, res, next) => {
+    if (req.method !== 'GET') return next()
+    if (req.path.startsWith('/api') || req.path.startsWith('/socket.io') || req.path === '/health' || req.path === '/meta') {
+      return next()
+    }
+    return res.sendFile(path.join(CLIENT_DIST_DIR, 'index.html'))
+  })
+}
 
 const server = http.createServer(app)
 

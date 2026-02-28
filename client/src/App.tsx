@@ -4,7 +4,16 @@ import clsx from 'clsx'
 import { io, Socket } from 'socket.io-client'
 import type { DifficultyMode, GameFormat, RoomState, Submission, TeamId } from './types'
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:4000'
+const resolveDefaultServerUrl = () => {
+  if (typeof window === 'undefined') return 'http://localhost:4000'
+  const { hostname, port, origin } = window.location
+  const isLocal = hostname === 'localhost' || hostname === '127.0.0.1'
+  const isVitePort = port === '5173' || port === '5175'
+  if (isLocal && isVitePort) return 'http://localhost:4000'
+  return origin
+}
+
+const SERVER_URL = import.meta.env.VITE_SERVER_URL || resolveDefaultServerUrl()
 const SESSION_STORAGE_KEY = 'quizbattle:session'
 const AUTH_TOKEN_STORAGE_KEY = 'quizbattle:authToken'
 const LANDING_PAGE_STORAGE_KEY = 'quizbattle:landingPage'
