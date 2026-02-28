@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: quizbattle
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm ci --prefix server && npm ci --prefix client && npm run build --prefix client
+    startCommand: npm run start --prefix server
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: NODE_ENV
+        value: production
+      - key: SERVER_AI_MODE
+        value: hybrid
+      - key: SERVE_CLIENT
+        value: "true"
+      - key: YC_API_KEY
+        sync: false
+      - key: YC_FOLDER_ID
+        sync: false
+      - key: GIGACHAT_ACCESS_TOKEN
+        sync: false
+      - key: GIGACHAT_AUTH_KEY
+        sync: false
+      - key: GIGACHAT_SCOPE
+        value: GIGACHAT_API_PERS
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false

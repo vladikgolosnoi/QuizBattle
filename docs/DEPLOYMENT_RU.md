@@ -1,4 +1,22 @@
-# Деплой QuizBattle (VPS + Nginx)
+# Деплой QuizBattle
+
+## Вариант A: Быстрый облачный деплой (Render)
+
+Этот вариант нужен для демо по ссылке без поднятия VPS вручную.
+
+1. Пуш в GitHub (ветка `main`) c файлом `render.yaml`.
+2. В Render: `New +` -> `Blueprint` -> выбери репозиторий `QuizBattle`.
+3. Нажми `Apply` для создания сервиса `quizbattle`.
+4. В `Environment` заполни ключи моделей (`YC_API_KEY`, `YC_FOLDER_ID`, `GIGACHAT_*`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `OPENAI_API_KEY`) по необходимости.
+5. После первого деплоя получишь URL вида `https://quizbattle.onrender.com`.
+
+Привязка домена `vladikgolosnoi.ru`:
+
+1. В Render у сервиса: `Settings` -> `Custom Domains` -> `Add Domain`.
+2. В REG.RU добавь DNS-записи, которые покажет Render (обычно `CNAME`/`A`).
+3. Дождись валидации SSL (обычно 5-20 минут).
+
+## Вариант B: VPS + Nginx
 
 ## 1. Подготовка сервера
 
